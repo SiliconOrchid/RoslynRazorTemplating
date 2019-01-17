@@ -1,48 +1,23 @@
 ﻿
-
 @inherits RazorEngineTemplating.RazorEngineBaseTemplate<EmailTemplateDemo.EmailTemplates.SampleEmailTemplateModel>
 <!doctype html>
 <html>
     <head>
-        <meta charset="utf-8">
         <title>@(Model.EmailTagline)</title>
-        <style>
-            p {
-                font-size: 1em;
-            }
-        </style>
     </head>
 
     <body>
-        <div class="container">
-            <div class="clear"></div>
-            <br>
-
-            <table width="100%" border="0" cellspacing="0" cellpadding="5">
-                <tbody>
-                    <tr>
-                        <td>
-                            <h1>@(Model.EmailTagline)</h1>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <table width="100%" border="0" cellspacing="0" cellpadding="5">
-                <tbody>
-                    @foreach (var item in Model.ListCollectionItems)
-                    {
-                        <tr>
-                            <td>
-                                <p>Description:</p>
-                                <br>
-                                <p>@item.CollectionItemDescription</p>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-
+        <div>
+            <h1>@(Model.EmailTagline)</h1>
+        </div>
+                    
+        <div>
+            @foreach (var item in Model.ListCollectionItems)
+            {
+                <div>
+                    <p>Description: @item.CollectionItemDescription</p>
+                </div>
+            }
         </div>
     </body>
 </html>

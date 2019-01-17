@@ -9,7 +9,6 @@ namespace RazorEngineTemplating
 
         public TTemplateViewModel Model;
 
-
         public void WriteLiteral(string literal)
         {
             stringBuilder.Append(literal);
