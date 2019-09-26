@@ -19,6 +19,22 @@ namespace RazorEngineTemplating
             stringBuilder.Append(obj.ToString());
         }
 
+
+        public void BeginWriteAttribute(string name, string prefix, int prefixOffset, string suffix, int suffixOffset, int attributeValuesCount)
+         {
+            stringBuilder.Append($" {name}=");
+        }
+
+        public void WriteAttributeValue(string prefix, int prefixOffset, object value, int valueOffset, int valueLength, bool isLiteral)
+        {
+            stringBuilder.Append($"'{value}'");
+        }
+
+        public  void EndWriteAttribute()
+        {
+            
+        }
+
         public string GetMarkup()
         {
             return stringBuilder.ToString();
