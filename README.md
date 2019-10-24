@@ -1,9 +1,11 @@
 # RoslynRazorTemplating
 Use the power of the Razor templating engine, in projects other than MVC
 
-This repository is accompanied by the following article, please visit that website for complete documentation.
+This is version #1 of the code, which has been fixed into this branch, so that it correctly accompanied by the following article, please visit that website for complete documentation.
 
 https://blogs.siliconorchid.com/post/coding-inspiration/razor-templating-with-roslyn/
+
+For up-to-date version, including reccent bugfixes, please use the 'master' branch as expected!
 
 Requirements:
 * .Net Core 2.0
