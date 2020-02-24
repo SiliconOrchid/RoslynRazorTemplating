@@ -19,8 +19,7 @@ namespace RazorEngineTemplating
 
 
             PortableExecutableReference referenceToCallingAssembly = MetadataReference.CreateFromFile(Assembly.GetCallingAssembly().Location); // we will need to know what piece of code has called *this* code, so we need to make a note of this at first opportunity (this will be later added to a dynmic compilation item)
-            RazorProjectEngine razorProjectEngine;
-            RazorProjectFileSystem razorProjectFileSystem = InitialiseTemplateProject(dynamicAssemblyNamespace, out razorProjectEngine);
+            RazorProjectFileSystem razorProjectFileSystem = InitialiseTemplateProject(dynamicAssemblyNamespace, out RazorProjectEngine razorProjectEngine);
             RazorProjectItem razorProjectItem = GetRazorProjectItem(razorProjectFileSystem, razorTemplateFileName);
             SyntaxTree cSharpSyntaxTree = GenerateSyntaxTree(razorProjectItem, razorProjectEngine);
             CSharpCompilation cSharpCompilation = CompileDynamicAssembly(dynamicDllName, cSharpSyntaxTree, referenceToCallingAssembly);
@@ -37,7 +36,7 @@ namespace RazorEngineTemplating
             // customize the default engine a little bit
             razorProjectEngine = RazorProjectEngine.Create(RazorConfiguration.Default, razorProjectFileSystem, (builder) =>
             {
-                InheritsDirective.Register(builder);
+                // InheritsDirective.Register(builder);
 
                 // define a namespace for the Template class
                 builder.SetNamespace(dynamicAssemblyNamespace);
@@ -51,7 +50,7 @@ namespace RazorEngineTemplating
         private static RazorProjectItem GetRazorProjectItem(RazorProjectFileSystem razorProjectFileSystem, string razorTemplateFileName)
         {
             // get a razor-templated file.   You could just use a ".txt" file here, but recommend leaving it as ".cshtml" to make it more apparent what the file should contain (i.e. razor-infused markup)
-            return razorProjectFileSystem.GetItem($"{_razorTemplateBaseFolder}/{razorTemplateFileName}");
+            return razorProjectFileSystem.GetItem(path: $"{_razorTemplateBaseFolder}/{razorTemplateFileName}", fileKind: null);
         }
 
 
